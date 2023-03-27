@@ -24,7 +24,7 @@ To optimize the codes, tweak the parameters in a matrix and use transfer learnin
 
 We performed a thorough literature survey of the problem at hand. Our goal was to get in-depth, on-foot knowledge of the entire life cycle of paddy seeds, from its cultivation, and distribution, all the way to its sowing.
 
-### For the first step, we started by gathering information about Trichy's local farmers' market
+- For the first step, we started by gathering information about Trichy's local farmers' market
 
 <p align="center">
   <img src="img/1.jpeg" alt="alt text" width="45%">
@@ -32,7 +32,7 @@ We performed a thorough literature survey of the problem at hand. Our goal was t
   <img src="img/2.jpeg" alt="alt text" width="45%">
 </p>
 
-### We then visited the Gandhi market, late after noon to have a talk with the paddy seed venders
+- We then visited the Gandhi market, late after noon to have a talk with the paddy seed venders
 
 <p align="center">
   <img src="img/3.jpeg" alt="alt text" width="45%">
@@ -42,7 +42,7 @@ We performed a thorough literature survey of the problem at hand. Our goal was t
 
 According to the information given to us, the shop owners buy paddy seeds from vendors who in turn buy them directly from the government. While purchasing from the government, they are given a certificate, certifying the type and quality of the paddy seed. The vendors put a slip on each sack containing the details like date of packaging, expiration date, vigor, and storability. As the seeds are certified, the farmers trusted the process blindly and do not question the process of seed classification.
 
-### To know details about the certification process, we visited the Agriculture Technology Management Agency (AMTA) of Trichy
+- To know details about the certification process, we visited the Agriculture Technology Management Agency (AMTA) of Trichy
 
 <p align="center">
   <img src="img/5.jpeg" alt="alt text" width="45%">

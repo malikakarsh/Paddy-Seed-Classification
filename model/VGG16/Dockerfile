@@ -8,6 +8,6 @@ RUN python -m pip install --upgrade pip && pip install --no-cache-dir -r require
 
 COPY . .
 
-CMD ["python", "model.py"]
+CMD ["python", "vgg16_model.py"]
 
 

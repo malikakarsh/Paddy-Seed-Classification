@@ -1,9 +1,16 @@
 version: '3.9'
 
 services:
-  app:
+  app_cnn:
     build:
       context: .
+      dockerfile: Dockerfile
+    volumes:
+      - "./:/app"
+
+  app_vgg16:
+    build:
+      context: ./VGG16
       dockerfile: Dockerfile
     volumes:
       - "./:/app"
