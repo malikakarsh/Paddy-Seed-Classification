@@ -4,6 +4,7 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator,load_img, img_to_array
+from tensorflow.keras.callbacks import EarlyStopping
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -54,13 +55,27 @@ def train_model():
     model.compile(optimizer='adam',
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
+    
+    # Early stopping callback (configured to monitor the validation loss, wait for 3 epochs with no improvement before stopping training, and restore the best weights seen during training.)
+    early_stopping = EarlyStopping(
+        monitor='val_loss',
+        patience=3,
+        mode='min',
+        restore_best_weights=True)
 
     history = model.fit(
         train_generator,
         steps_per_epoch=train_generator.samples // batch_size,
         validation_data=val_generator,
         validation_steps=val_generator.samples // batch_size,
-        epochs=epochs)
+        epochs=epochs,
+        callbacks=[early_stopping])
+    
+    # Print the best results obtained
+    best_val_loss = min(history.history['val_loss'])
+    best_val_acc = max(history.history['val_accuracy'])
+    best_epoch = history.history['val_loss'].index(best_val_loss) + 1
+    print(f'Best Validation Loss: {best_val_loss:.4f} - Best Validation Accuracy: {best_val_acc:.4f} - Best Epoch: {best_epoch}')
 
     # Plotting the training and validation loss and accuracy
     sns.set_style("darkgrid")
