@@ -25,3 +25,13 @@ From the above four metric, the optimal parameters for training the model should
 1. Batch size - 64
 2. Epochs - 30
 3. Dense layer neurons - 256
+
+## Final Model Metric
+
+- Best Validation Loss: 0.7854
+- Best Validation Accuracy: 0.8455
+- Best Epoch: 31
+
+<p align="center">
+  <img src="Results/metric_final.png" alt="alt text" width="60%">
+</p>
