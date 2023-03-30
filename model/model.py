@@ -4,7 +4,7 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator,load_img, img_to_array
-from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
@@ -15,6 +15,7 @@ img_height = 149
 img_width = 200
 epochs = 100
 train_dir = 'path/to/dataset'
+model_saveas = "model.h5"
 
 train_datagen = ImageDataGenerator(
     rescale=1./255,
@@ -56,12 +57,19 @@ def train_model():
                 loss='categorical_crossentropy',
                 metrics=['accuracy'])
     
-    # Early stopping callback (configured to monitor the validation loss, wait for 3 epochs with no improvement before stopping training, and restore the best weights seen during training.)
+    # Early stopping callback (configured to monitor the validation loss, wait for 10 epochs with no improvement before stopping training, and restore the best weights seen during training.)
     early_stopping = EarlyStopping(
-        monitor='val_loss',
-        patience=3,
-        mode='min',
+        monitor='val_accuracy',
+        patience=10,
+        mode='max',
         restore_best_weights=True)
+    
+    checkpoint = ModelCheckpoint(
+        filepath=model_saveas,
+        monitor='val_accuracy',
+        mode='max',
+        save_best_only=True
+    )
 
     history = model.fit(
         train_generator,
@@ -69,7 +77,7 @@ def train_model():
         validation_data=val_generator,
         validation_steps=val_generator.samples // batch_size,
         epochs=epochs,
-        callbacks=[early_stopping])
+        callbacks=[early_stopping, checkpoint])
     
     # Print the best results obtained
     best_val_loss = min(history.history['val_loss'])
@@ -90,7 +98,7 @@ def train_model():
     plt.legend()
     plt.savefig('metric.png')
 
-    model.save('model.h5')
+    model.save(model_saveas)
 
 def predict(path):
     try:
