@@ -47,6 +47,9 @@ def train_model():
     input_shape=(img_height, img_width, 3)
     )
 
+    for layer in vgg16_model.layers:
+        layer.trainable = False
+
     model = Sequential()
     model.add(vgg16_model)
     model.add(Flatten())
@@ -69,9 +72,10 @@ def train_model():
         restore_best_weights=True)
     
     checkpoint = ModelCheckpoint(
-        filepath=model_saveas,
+        filepath='model_checkpoint.h5',
         monitor='val_accuracy',
         mode='max',
+        verbose=1,
         save_best_only=True
         )
 
